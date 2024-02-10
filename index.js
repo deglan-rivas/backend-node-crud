@@ -1,8 +1,30 @@
-const express = require('express')
-const routes = require('./routes/index.js')
+import express from 'express'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+
+import { clientesModel } from './models/clientes.js'
+
+dotenv.config()
+
+import routes from './routes/index.js'
 
 const app = express()
+app.use(express.json());
+app.use(express.urlencoded())
 
 app.use('/', routes())
 
-app.listen(5000)
+const conectarDB = async () => {
+  try {
+    mongoose.connect(process.env.MONGODB_CONNECTION_STRING)
+    console.log('conexión exitosa')
+  } catch (error) {
+    console.log(`error encontrado ${error}`)
+  }
+}
+
+let PORT = '5000'
+app.listen(PORT, () => console.log(`servidor arrancado en puerto ${PORT}`))
+
+conectarDB()
+// console.log(process.env.MONGODB_CONNECTION_STRING)
