@@ -14,6 +14,13 @@ import {
   actualizarProducto,
   eliminarProducto
 } from '../controllers/productos.js'
+import { 
+  nuevoPedido,
+  mostrarPedidos,
+  mostrarPedido,
+  actualizarPedido,
+  eliminarPedido
+} from '../controllers/pedidos.js'
 
 const router = express.Router()
 
@@ -36,7 +43,11 @@ export default function () {
   );
   router.delete('/productos/:idProducto', eliminarProducto);
 
-  
+  router.post('/pedidos/nuevo/:idUsuario', nuevoPedido);
+  router.get('/pedidos', mostrarPedidos);
+  router.get('/pedidos/:idPedido', mostrarPedido);
+  router.put('/pedidos/:idPedido', actualizarPedido);
+  router.delete('/pedidos/:idPedido', eliminarPedido);
 
   return router
 }
