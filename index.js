@@ -2,16 +2,14 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
-import { clientesModel } from './models/clientes.js'
-
 dotenv.config()
 
 import routes from './routes/index.js'
 
 const app = express()
+
 app.use(express.json());
 app.use(express.urlencoded())
-
 app.use('/', routes())
 
 const conectarDB = async () => {
