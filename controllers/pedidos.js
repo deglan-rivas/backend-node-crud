@@ -1,4 +1,4 @@
-import { pedidosModel as Pedidos} from '../models/pedidos'
+import { pedidosModel as Pedidos} from '../models/pedidos.js'
 
 export const nuevoPedido = async (req, res, next) => {
     const pedido = new Pedidos(req.body);

@@ -4,17 +4,20 @@ import { productosModel as Productos } from '../models/productos.js'
 import multer from 'multer'
 import shortid from 'shortid'
 
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        const extension = file.mimetype.split('/')[1];
+        cb(null, `${shortid.generate()}.${extension}`);
+    }
+})
+
 const configuracionMulter = {
-    storage: fileStorage = multer.diskStorage({
-        destination: (req, file, cb) => {
-            cb(null, __dirname+'../../uploads/');
-        },
-        filename: (req, file, cb) => {
-            const extension = file.mimetype.split('/')[1];
-            cb(null, `${shortid.generate()}.${extension}`);
-        }
-    }),
+    storage: fileStorage,
     fileFilter(req, file, cb) {
+        // console.log(file.mimetype)
         if ( file.mimetype === 'image/jpeg' ||  file.mimetype ==='image/png' ) {
             cb(null, true);
         } else {
@@ -28,7 +31,8 @@ const upload = multer(configuracionMulter).single('imagen');
 export const subirArchivo = (req, res, next) => {
     upload(req, res, function(error) {
         if(error) {
-            res.json({mensaje: error})
+            // res.json({mensaje: error})
+            console.log(error)
         }
         return next();
     })
@@ -36,9 +40,10 @@ export const subirArchivo = (req, res, next) => {
 
 export const nuevoProducto = async (req, res, next) => {
     const producto = new Productos(req.body);
+    // console.log(req)
 
     try {
-        if(req.file.filename) {
+        if(req.file?.filename) {
             producto.imagen = req.file.filename
         }
         await producto.save();
