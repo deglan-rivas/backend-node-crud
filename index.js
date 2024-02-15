@@ -51,9 +51,9 @@ const conectarDB = async () => {
   }
 }
 
-const HOST = process.env.HOST || '0.0.0.0'
-let PORT = process.env.POST || '5000'
-app.listen(PORT, HOST, () => console.log(`servidor arrancado en puerto ${PORT}`))
+// const HOST = process.env.HOST || '0.0.0.0'
+const PORT = process.env.PORT || '5000'
+app.listen(PORT, () => console.log(`servidor arrancado en puerto ${PORT}`))
 
 conectarDB()
 // console.log(process.env.MONGODB_CONNECTION_STRING)
