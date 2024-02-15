@@ -12,7 +12,8 @@ import {
   mostrarProducto,
   mostrarProductos,
   actualizarProducto,
-  eliminarProducto
+  eliminarProducto,
+  buscarProducto
 } from '../controllers/productos.js'
 import { 
   nuevoPedido,
@@ -42,6 +43,7 @@ export default function () {
       actualizarProducto
   );
   router.delete('/productos/:idProducto', eliminarProducto);
+  router.post('/productos/busqueda/:query', buscarProducto)
 
   router.post('/pedidos/nuevo/:idUsuario', nuevoPedido);
   router.get('/pedidos', mostrarPedidos);
