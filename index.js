@@ -23,8 +23,10 @@ const whitelist = [process.env.FRONTEND_URL]
 //   }
 // }
 app.use(cors({
-  origin: whitelist
+  origin: '*'
 }))
+// DE MOMENTO no funciona la whitelist con netlify :c fácil algo enmascara ese www. de netlify
+  // origin: whitelist
 // Guía 2022 para habilitar cors: https://www.workfall.com/learning/blog/how-to-configure-cors-in-node-js-with-express/
 // methods: "POST,PUT,DELETE",
 // origin: ['https://www.workfall.com', 'https://www.google.com'],
