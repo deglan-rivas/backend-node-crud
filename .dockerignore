@@ -1,0 +1,11 @@
+mongo_data_container
+mongodb_collections
+monguito-data-compose
+restapis_crm-master
+
+node_modules
+.env
+.vscode
+
+.git
+.gitignore

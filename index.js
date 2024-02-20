@@ -57,3 +57,5 @@ app.listen(PORT, () => console.log(`servidor arrancado en puerto ${PORT}`))
 
 conectarDB()
 // console.log(process.env.MONGODB_CONNECTION_STRING)
+
+// TODO fixear cors con whitelist
